@@ -1,0 +1,54 @@
+<div class="row" style="font-size: 15px;">
+    <div class="col-sm-6">
+        <img *ngIf="!rentedCar['carPicture']" [src]="imageUrl"
+        style="width:230px; height:230px"
+        class="img-thumbnail img-fluid imagecss contain mb-3">
+
+        <img *ngIf="rentedCar['carPicture']" src ="data:image/jpeg;base64,{{!rentedCar['carPicture']}}"
+           style="width:230px; height:230px"
+           class="img-thumbnail img-fluid imagecss contain mb-3">
+    </div>
+    <div class="col-sm-6">
+<ul
+*ngIf="rentedCar"
+class="list-group list-group-flush mb-3 ">
+  <li class="list-group-item  mb-1 rounded"><span class="font-weight-bold">Car: </span>{{ rentedCar['car']['vehicle']['model']['brand']['name']}} {{ rentedCar['car']['vehicle']['model']['modelType']}}, {{ rentedCar['car']['vehicle']['variant']['bodyType']}}
+  </li>
+  <li class="list-group-item  mb-1 rounded"><span class="font-weight-bold">Period: </span> {{ rentedCar['fromDate'] | date}} - {{ rentedCar['tillDate'] | date}}</li>
+  <li class="list-group-item  mb-1 rounded"><span class="font-weight-bold">Year: </span>{{car['year']}}, <span class="font-weight-bold">LicencePlate:</span> {{car['licencePlate']}}</li>
+  <li class="list-group-item  mb-1 rounded"><span class="font-weight-bold">Transmission: </span>{{car['transmission']['type'] }}, <span class="font-weight-bold">FuelType: </span>{{car['fuelTypes'][0]['fuel']}}</li>
+  <li class="list-group-item  mb-1 rounded"><span class="font-weight-bold">Engine size: </span>{{car['engineSize']}}, <span class="font-weight-bold">Doors: </span>{{car['doors']}}</li>
+  <li class="list-group-item  mb-1 rounded"><span class="font-weight-bold">Rented with navigation: </span>{{rentedCar['rentedWithNavigation'] | yesno}}, <span class="font-weight-bold">Rented with ensurance: </span>{{rentedCar['rentedWithEnsurance'] | yesno}}</li>
+  <li class="list-group-item  mb-1 rounded"><span class="font-weight-bold">Owner's contact:</span>{{ rentedCar['car']['user']['name']}} {{ rentedCar['car']['user']['surname']}}, {{ rentedCar['car']['user']['contactPhone']}}</li>
+</ul>
+</div>
+</div>
+<div class="row justify-content-around xs">
+    <div class="col-xs-4">
+      <button type="button"
+      (click)="onBack()"
+      class="btn btn-lg btn-outline-danger">Back</button>
+    </div>
+
+  <div class="col-xs-4">
+      <button type="button"
+        (click)="onCancelReservation(template, templateForbidden)"
+        class="btn btn-lg btn-outline-danger">Cancel renting</button>
+
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Are you sure you want to cancel this renting?</p>
+    <button type="button" class="btn btn-outline-danger mr-5" (click)="confirm()" >Yes</button>
+    <button type="button" class="btn btn-outline-danger" (click)="decline()" >No</button>
+  </div>
+</ng-template>
+
+<ng-template #templateForbidden>
+  <div class="modal-body text-center">
+    <p>You cant't cancel this</p>
+    <button type="button" class="btn btn-outline-danger mr-5" (click)="confirmForbidden()" >Ok</button>
+  </div>
+</ng-template>

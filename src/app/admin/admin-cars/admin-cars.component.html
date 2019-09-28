@@ -1,0 +1,61 @@
+
+<div class="table-responsive">
+<div fxLayout="row" fxLayoutAlign="center center" class="mt">
+  <div fxFlex="50%">
+      <i class="material-icons mt-4 pr-2">
+          search
+          </i>
+    <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Search" class="color">
+        </div>
+      </div>
+
+<table mat-table [dataSource]="dataSource" class="full-width-table" matSort>
+
+  <ng-container matColumnDef="vehicle">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Car</th>
+    <td mat-cell *matCellDef="let car" class="text-left"> {{car.vehicle.model.brand.name}} {{car.vehicle.model.modelType}} {{car.vehicle.variant.bodyType}} </td>
+  </ng-container>
+
+<ng-container matColumnDef="year">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Year </th>
+    <td mat-cell *matCellDef="let car" class="text-left"> {{car.year }} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="address">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> City</th>
+    <td mat-cell *matCellDef="let car" class="text-left"> {{car.address.city.name}} </td>
+  </ng-container>
+
+   <ng-container matColumnDef="transmission">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Transmission </th>
+    <td mat-cell *matCellDef="let car" class="text-left"> {{car.transmission.type}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="fuelTypes">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type of fuel </th>
+      <td mat-cell *matCellDef="let car" class="text-left"> {{car.fuelTypes[0].fuel}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="engineSize">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Size of engine </th>
+        <td mat-cell *matCellDef="let car" class="text-left"> {{car.engineSize}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="pricePerDay">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Price per day </th>
+          <td mat-cell *matCellDef="let car" class="text-left"> {{car.pricePerDay}} </td>
+        </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator
+   [pageSize]="5" >
+  </mat-paginator>
+
+
+  <div>
+      <p><strong>Total cars for renting: {{countCars}}</strong></p>
+</div>
+</div>

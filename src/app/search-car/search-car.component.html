@@ -1,0 +1,276 @@
+<div class="card mb-10" *ngIf="!details">
+    <div class="card-header ">
+        <button type="button" class="close ml-auto"
+         data-dismiss="card"
+         aria-label="Close"
+         (click)="hideCard()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h3>Search for a car to rent</h3>
+      </div>
+
+
+
+    <div class="card-body">
+    <form
+    (ngSubmit)="onSearch(f)"
+    #f="ngForm">
+
+      <div class="row justify-content-center">
+        <div class="form-group col-md-4">
+            <select
+               name="city"
+               id="city"
+                class="form-control"
+                ngModel
+                required
+                #city="ngModel">
+                <option value="">Select City</option>
+                <option *ngFor="let city of cities" [value]="city.id">
+                    {{city.name}}
+                </option>
+            </select>
+            <p
+            *ngIf="!city.valid && city.touched"
+             class="help-block">This field is required
+          </p>
+        </div>
+
+
+            <div class="form-group col-md-4 col-xs-12 ">
+              <input type="text"
+              bsDaterangepicker
+              [bsConfig] = "datePickerConfig"
+              name="rentPeriod"
+              ngModel
+              class="form-control mb-3"
+              placeholder="From-Until"
+              required
+              #rentPeriod = "ngModel">
+              <p
+              *ngIf="!rentPeriod.valid && rentPeriod.touched"
+               class="help-block">This field is required
+            </p>
+            </div>
+
+          </div>
+
+          <!-- <div class="row  justify-content-center">
+          <div class="form-group col-md-4">
+              <select
+                name="brand"
+                ngModel
+                #brand="ngModel"
+                 (change)="getModels($event.target.value)"
+                  class="form-control">
+                  <option value="">Any specific brand?</option>
+                  <option *ngFor="let brand of brands" [value]="brand.id">
+                      {{brand.name}}
+                  </option>
+              </select>
+          </div>
+        </div> -->
+
+        <!-- <div class="row  justify-content-center">
+          <div class="form-group col-sm-4">
+              <select
+                name="model"
+                ngModel
+                #model="ngModel"
+                 (change)="getVariants($event.target.value)"
+                  class="form-control">
+                  <option value="">Select Model</option>
+                  <option *ngFor="let model of models" [value]="model.id">
+                      {{model.modelType}}
+                  </option>
+              </select>
+          </div>
+        </div> -->
+
+        <div class="row  justify-content-center">
+          <div class="form-group col-sm-4">
+              <select
+                  name="variant"
+                  class="form-control"
+                  ngModel
+                  #variant="ngModel"
+                  >
+                  <option value="">Any specific body variant?</option>
+                  <option *ngFor="let variant of variants" [value]="variant.id">
+                      {{variant.bodyType}}
+                  </option>
+              </select>
+          </div>
+        </div>
+
+        <div class="row  justify-content-center">
+          <div class="form-group col-sm-4">
+              <select
+              name="trans"
+              class="form-control"
+              ngModel
+              #trans="ngModel">
+                  <option value="">Specific transmission type?</option>
+                  <option *ngFor="let t of transmissions" [value]="t.id">
+                      {{t.type}}
+                  </option>
+              </select>
+          </div>
+        </div>
+
+
+          <!-- <div class="form-group col-sm-4">
+              <select
+              name="ftype"
+              class="form-control"
+              ngModel
+              #ftype="ngModel"
+              required>
+                  <option value="">Type of Fuel</option>
+                  <option *ngFor="let fuel of fuelType" [value]="fuel.id">
+                      {{fuel.fuel}}
+                  </option>
+                  [disabled]="!f.valid"
+              </select>
+          </div> -->
+
+          <div class="row  justify-content-center">
+          <div class="col-sm-4">
+              <button
+              class="btn btn-lg btn-outline-danger btn-block"
+              type="submit"
+              [disabled]="!f.valid"
+              >S E A R C H
+            </button>
+             </div>
+            </div>
+          </form>
+
+          </div>
+        </div>
+
+        <!-- <div *ngIf="!details" >
+        <ul
+        *ngFor="let car of searchedCars; index as i"
+          class="list-group">
+          <li class="list-group-item mb-1">
+          <a
+          (click)="onDetails(i)">
+
+              <div class="row justify-content-around">
+
+                  <i class ="fas fa-car-alt pr-4 mt-2 text-light"></i>
+                  <div class="div">
+                   <!-- <p><strong>{{vehicles[i]['dataVeh']}}</strong></p>
+                  <p>{{car.year}}, {{car.pricePerDay }}&euro;/day</p>
+                   <p>{{car[i].vehicle.model.brand.name | uppercase}} {{car[i].vehicle.model.modelType}}, {{car[i].vehicle.variant.bodyType}}</p> -->
+                   <!-- <p>{{ car['vehicle']['model']['brand']['name'] | uppercase}} {{ car['vehicle']['model']['modelType'] }} {{ car['vehicle']['variant']['bodyType'] }}</p>
+                  <p>{{car['year']}}, {{car['pricePerDay'] }}&euro;/day</p>
+                </div>
+
+
+              </div>
+
+            </a>
+          </li>
+        </ul>
+      </div> -->
+
+<div *ngIf="!details">
+      <table class="table mt-3" *ngIf="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Available cars</th>
+            <th scope="col">Price per day</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let car of searchedCars | paginate: config">
+
+            <td>
+              <i class ="fas fa-car-alt text-light"></i>
+            </td>
+
+            <td>
+                <a
+                (click)="onDetails(car.id)">
+              {{ car['vehicle']['model']['brand']['name'] | uppercase}}
+                 {{ car['vehicle']['model']['modelType'] }} {{ car['vehicle']['variant']['bodyType'] }}, {{car['year']}}
+                </a>
+                </td>
+            <td>
+                 {{car['pricePerDay'] }}&euro;
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+<div class="row justify-content-center">
+  <div  *ngIf="table" class="col-sm-6 pagination justify-content-center pt-2">
+    <pagination-controls (pageChange)="pageChanged($event)">
+      </pagination-controls>
+    </div>
+    </div>
+
+    </div>
+
+
+
+<div *ngIf="details" class="redBorder">
+  <div class="row">
+    <div class="col-sm-6">
+        <img *ngIf="!carDetails.carPicture" [src]="imageUrl"
+        style="width:250px; height:250px"
+        class="img-thumbnail contain mb-4">
+
+        <img *ngIf="carDetails.carPicture" src ="data:image/jpeg;base64,{{carDetails.carPicture}}"
+           style="width:250px; height:250px"
+           class="img-thumbnail contain mb-4">
+    </div>
+
+ <div class="col-sm-6">
+        <ul class="list-group">
+          <li class="list-group-item">{{carDetails.vehicle.model.brand.name}} {{carDetails.vehicle.model.modelType}} - {{carDetails.vehicle.variant.bodyType}}</li>
+          <li class="list-group-item">Owner: {{carDetails.user.name}} {{carDetails.user.surname}}</li>
+          <li class="list-group-item">Year: {{carDetails.year}}</li>
+          <li class="list-group-item">Transmission: {{carDetails.transmission.type}}</li>
+          <li class="list-group-item">Type of fuel: {{carDetails['fuelTypes'][0].fuel}}</li>
+          <li class="list-group-item">Number of doors: {{carDetails.doors}}</li>
+          <li class="list-group-item">Cars Location: {{carDetails.address.street}} {{carDetails.address.number}}, {{carDetails.address.city.name}}</li>
+        </ul>
+      </div>
+    </div>
+        <div class="row  justify-content-around mt-3 xs">
+            <div class="col-xs-4">
+                <button
+                class="btn btn-lg btn-outline-danger btn-block"
+                type="button"
+                (click)="onBack()"
+                >BACK
+              </button>
+               </div>
+          <div class="col-xs-4">
+              <button
+              class="btn btn-lg btn-outline-danger btn-block"
+              type="button"
+
+              (click)="onRent()"
+              >RENT IT
+            </button>
+             </div>
+            </div>
+  </div>
+
+
+
+
+
+
+
+
+
+

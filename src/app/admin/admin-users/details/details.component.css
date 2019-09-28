@@ -1,0 +1,23 @@
+li {
+  background-color: rgba(28, 22, 22, .5) ;
+  /* border-color: darkred; */
+}
+@media (max-width: 575px) {
+
+img {
+  width: 220px !important;
+  height: 220px !important;
+
+}
+.imagecss {
+  margin-top: -70px;
+}
+.list-group-item{
+  margin-bottom: 1px !important;
+}
+.list-group {
+  margin-bottom: 1px !important;
+  margin-top: 5px !important;
+}
+
+}

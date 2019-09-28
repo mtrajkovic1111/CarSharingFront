@@ -1,0 +1,131 @@
+<div *ngIf="extraPrice" class="row justify-content-center extra">
+    <form
+    (ngSubmit)="onSubmit()"
+    #f="ngForm">
+
+<div class="row justify-content-center card-header  mb-3" *ngIf="hasNav"> <h4>This car has navigation, which is extra payed</h4></div>
+    <div *ngIf="hasNav" class="row justify-content-center mb-5">
+
+        <div class="col-lg-5"><label for="navigation"><h5>Rent with navigation?</h5></label></div>
+        <div class="col-lg-3">
+            <select
+            name="navigation"
+            id="navigation"
+            required
+            ngModel
+            required
+            (change)="displayExtraNav()"
+            #navigation="ngModel"
+              class="form-control">
+              <option [value]="true">Yes</option>
+              <option [value]="false">No</option>
+          </select>
+        </div>
+
+        <div *ngIf="nav" class="col-lg-3">
+            <input type="number"
+            id="addNavPrice"
+            name="addNavPrice"
+            class="form-control"
+            [(ngModel)] = "navPrice"
+            disabled
+            >
+        </div>
+      </div>
+
+      <div *ngIf="hasEns" class="row justify-content-center card-header mb-5"><h4>This car is ensured, and you can pay extra for it</h4></div>
+      <div *ngIf="hasEns" class="row justify-content-center mb-3">
+
+            <div class="col-lg-5"><label for="ensurance"><h5>Rent with ensurance?</h5></label></div>
+            <div class="col-lg-3">
+                <select
+                name="ensurance"
+                id="ensurance"
+                required
+                ngModel
+                required
+                (change)="displayExtraEns()"
+                class="form-control">
+                  <option [value]="true">Yes</option>
+                  <option [value]="false">No</option>
+              </select>
+            </div>
+
+            <div *ngIf="ens" class="col-lg-3">
+                <input type="number"
+                id="addEnsPrice"
+                name="addEnsPrice"
+                class="form-control"
+                [(ngModel)] = "ensPrice"
+                disabled
+                >
+            </div>
+          </div>
+
+          <div class="row justify-content-center mb-3">
+              <div class="col-lg-5">
+                  <label for="total"><h4>TOTAL PRICE</h4></label>
+              </div>
+              <div class="col-lg-3">
+                  <input
+                  type="number"
+                  disabled
+                  id="total"
+                  name="total"
+                  class="form-control"
+                  ngModel
+                  [value] = "countPrice()"
+                  placeholder="day / &euro;"
+                  #total="ngModel"
+                  >
+              </div>
+            </div>
+
+            <div class="row justify-content-center ">
+              <div class="col-lg-6">
+                  <button
+                  class="btn btn-lg btn-outline-danger btn-block mb-3"
+                  type="submit"
+                  [disabled]="!f.valid">Next
+                </button>
+              </div>
+            </div>
+
+
+</form>
+</div>
+
+
+<div *ngIf="!extraPrice" class="row justify-content-center">
+  <div class="col-sm-6 mb-3"> <h4>You successfully rented:</h4>
+<ul class="list-group">
+
+  <li class="list-group-item"> {{ rentedCar['car']['vehicle']['model']['brand']['name']}} {{ rentedCar['car']['vehicle']['model']['modelType']}}, {{ rentedCar['car']['vehicle']['variant']['bodyType']}}</li>
+  <li class="list-group-item">For period: {{ rentedCar['fromDate'] | date}} - {{ rentedCar['tillDate'] | date}}</li>
+  </ul>
+  </div>
+</div>
+
+
+<div *ngIf="!extraPrice" class="row justify-content-center">
+  <div class="col-sm-6 mb-3"> <h4>Owner's contact:</h4>
+      <ul class="list-group">
+
+        <li class="list-group-item"> {{ rentedCar['car']['user']['name']}} {{ rentedCar['car']['user']['surname']}}</li>
+        <li class="list-group-item">Contact phone: {{ rentedCar['car']['user']['contactPhone']}} </li>
+        </ul>
+        </div>
+      </div>
+
+
+      <div *ngIf="!extraPrice" class="row  justify-content-center">
+          <div class="col-sm-4">
+              <button
+              class="btn btn-lg btn-outline-danger btn-block"
+              type="button"
+              (click)="onOk()"
+              >Ok
+            </button>
+             </div>
+ </div>
+

@@ -1,0 +1,36 @@
+.full-width-table {
+  width: 80%;
+  margin: 10px auto;
+  background-color: rgba(28, 22, 22, .7) ;
+
+
+}
+/* .material-icons {
+  font-size: 30px;
+} */
+
+.mt{
+  margin-top: -90px;
+  margin-bottom: 30px;
+}
+
+.total {
+  margin-top: -80px;
+}
+.color{
+  background-color: rgba(28, 22, 22, .8) ;
+  color: whitesmoke;
+}
+.table-responsive {
+  margin-top: -60px !important;
+}
+
+@media (max-width: 575px) {
+
+  .table-responsive {
+    margin-top: -70px !important;
+    font-size: 0.9rem;
+  }
+
+
+  }

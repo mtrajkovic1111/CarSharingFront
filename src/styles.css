@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~material-design-icons/iconfont/material-icons.css";
+
+body {
+  color: lightgray;
+
+}
+
+#toast-container > .toast-success {
+  background-image: none;
+  background-color: whitesmoke;
+  color: darkred;
+
+}
+#toast-container > .toast-error {
+  background-image: none;
+  background-color: #e9e9e9;
+  color: red;
+}
+
+
+.form-control.ng-touched.ng-invalid {
+  border: 2px solid red;
+}
+
+

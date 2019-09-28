@@ -1,0 +1,50 @@
+.card {
+  background-color: rgba(28, 22, 22, .5) ;
+  border-color: darkred;
+  margin-top: -155px;
+
+
+}
+.card-header, .btn {
+  background-color: maroon;
+  color: whitesmoke;
+
+}
+
+@media (max-width: 575px) {
+  .card {
+    margin-top: -170px;
+  }
+  .form-control {
+    height: calc(1.8125rem + 1px);
+    padding: .2rem .3rem;
+    font-size: .775rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
+.form-group {
+  margin-bottom: 3px;
+}
+.btn {
+  font-size: 20px;
+  padding: 3px;
+
+}
+
+
+.card-header {
+margin-bottom: 1px;
+padding-bottom: 2px;
+
+}
+.card-body {
+  margin-top: -50px;
+  padding-top: 5px;
+
+  }
+  h3 {
+    font-size: 1.3rem;
+  }
+}
+
+

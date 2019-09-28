@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <img *ngIf="!user.profilePicture"[src]="imageUrl"
+      style="width:250px; height:250px"
+      class="img-thumbnail img-fluid contain imagecss mb-4">
+
+      <img *ngIf="user.profilePicture" src ="data:image/jpeg;base64,{{user.profilePicture}}"
+         style="width:250px; height:250px"
+         class="img-thumbnail img-fluid imagecss contain mb-4">
+
+         <div >Number of cars for renting: {{countCars}}</div>
+         <!-- <div style="font-size: 22px;"><a routerLink="/admin/users-car"> <div class="d-inline-flex pr-3"><p class="py-auto">view cars</p> </div>  </a> </div> -->
+    </div>
+
+    <div class="col-sm-6">
+       <ul
+       *ngIf="user"
+       class="list-group list-group-flush mb-5 ">
+         <li class="list-group-item  mb-3 rounded"><span class="font-weight-bold">Name: </span> {{user.name}} {{user.surname}}</li>
+         <li class="list-group-item  mb-3 rounded"><span class="font-weight-bold">Date of birth: </span>{{user.dateOfBirth | date: 'dd/MM/yyyy' }}</li>
+         <li class="list-group-item  mb-3 rounded"><span class="font-weight-bold">Username: </span>{{user.username}}</li>
+         <li class="list-group-item  mb-3 rounded"><span class="font-weight-bold">Email: </span>{{user.email}}</li>
+     </ul>
+     </div>
+
+  </div>
+</div>

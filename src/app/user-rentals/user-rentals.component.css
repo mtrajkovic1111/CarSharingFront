@@ -1,0 +1,13 @@
+.table {
+color: whitesmoke;
+}
+
+.pagination {
+  background-color: rgba(95, 66, 66, 0.5);
+}
+@media (max-width: 575px) {
+  .table{
+    font-size: 12px;
+  }
+
+}

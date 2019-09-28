@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-sm-12">
+
+<div class="table-responsive">
+      <table class="table table-sm" *ngIf="rentedCars">
+        <thead>
+          <tr>
+            <th scope="col">Rented</th>
+            <th scope="col">For period</th>
+            <th scope="col">With navigation</th>
+            <th scope="col">With ensurance</th>
+            <th scope="col">Price per day</th>
+            <th scope="col">Owner's name</th>
+            <th scope="col">Contact</th>
+            <th scope="col">Details</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+
+         <tr *ngFor="let rentedCar of rentedCars | paginate: config">
+
+            <td>
+                {{ rentedCar['car']['vehicle']['model']['brand']['name']}} {{ rentedCar['car']['vehicle']['model']['modelType']}}, {{ rentedCar['car']['vehicle']['variant']['bodyType']}}
+            </td>
+
+            <td>
+                {{ rentedCar['fromDate'] | date}} - {{ rentedCar['tillDate'] | date}}
+            </td>
+
+            <td>
+                {{ rentedCar['rentedWithNavigation'] | yesno}}
+            </td>
+
+            <td>
+                {{ rentedCar['rentedWithEnsurance'] | yesno}}
+            </td>
+
+            <td>
+                {{ rentedCar['totalPricePerDay']}}
+            </td>
+
+            <td>
+                {{ rentedCar['car']['user']['name']}} {{ rentedCar['car']['user']['surname']}}
+
+            </td>
+
+            <td>
+                {{ rentedCar['car']['user']['contactPhone']}}
+            </td>
+
+            <td>
+                <a [routerLink]="['/user/rentals', rentedCar.id]"> details</a>
+            </td>
+
+          </tr>
+
+        </tbody>
+      </table>
+
+<div class="row justify-content-center mb-3">
+  <div  *ngIf="rentedCars" class="col-sm-6 pagination justify-content-center pt-2">
+    <pagination-controls (pageChange)="pageChanged($event)">
+      </pagination-controls>
+    </div>
+    </div>
+  </div>
+
+</div>
+</div>

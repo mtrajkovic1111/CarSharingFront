@@ -1,0 +1,46 @@
+
+    <div class="card">
+      <div class="card-header mb-3" style="text-align:center">
+        <h3>Would you like to add the picture of this car?</h3>
+      </div>
+
+      <div class="card-body">
+
+  <form
+    (ngSubmit)="onAddPicture()"
+    #f="ngForm">
+
+<div class="row justify-content-center ">
+
+    <div class="col-sm-6">
+
+        <img [src]="imageUrl"
+          style="width:250px; height:250px"
+          class="img-thumbnail contain mb-4">
+
+        <div class="custom-file">
+          <input type="file"
+          class="custom-file-input"
+            name="uploadedFile" id="uploadedFile"
+            (change)="onPicSelected($event)">
+              <label class="custom-file-label" for="uploadedFile">Choose File</label>
+
+        </div>
+  </div>
+
+</div>
+
+    <div class="row justify-content-center mt-2">
+        <div class="col-sm-6">
+            <button
+            class="btn btn-lg btn-outline-danger btn-block"
+            type="submit"
+            [disabled]="!f.valid">Next
+          </button>
+        </div>
+      </div>
+
+  </form>
+</div>
+</div>
+

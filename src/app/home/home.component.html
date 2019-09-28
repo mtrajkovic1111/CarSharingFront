@@ -1,0 +1,22 @@
+<nav class="navbar fixed-bottom navbar-expand navbar-dark">
+    <!-- <button class="navbar-toggler" type="button" data-toggle="collapse"
+     data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation"
+      (click)="toggleCollapsed()">
+      <span class="navbar-toggler-icon"></span>
+    </button> -->
+    <div class="collapse navbar-collapse " id="navbarNavAltMarkup" [ngClass]="{'collapse': collapsed, 'navbar-collapse': true}">
+      <div class="navbar-nav mx-auto">
+        <a class="nav-item nav-link px-5" routerLink="/add-car"><i class="fas fa-plus-circle fa-3x"></i></a>
+        <a class="nav-item nav-link px-5" routerLink="/search"><i class="fas fa-search fa-3x"></i></a>
+        <a class="nav-item nav-link px-5" routerLink="/user"><i class="far fa-user-circle fa-3x"></i></a>
+        <a
+          *ngIf="isAdmin"
+          class="nav-item nav-link px-5" routerLink="/admin"><i class="fas fa-user-lock fa-3x"></i></a>
+      </div>
+    </div>
+  </nav>
+
+
+
+

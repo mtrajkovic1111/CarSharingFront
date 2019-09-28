@@ -1,0 +1,94 @@
+<table class="table" *ngIf="table">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Your cars for renting</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let userCar of userCars | paginate: config">
+
+        <td>
+          <i class ="fas fa-car-alt text-light"></i>
+        </td>
+
+        <td>
+            {{userCar['vehicle']['model']['brand']['name'] | uppercase}} {{userCar['vehicle']['model']['modelType'] }} - {{userCar['vehicle']['variant']['bodyType']}} <br>
+            {{userCar.year}}
+          </td>
+
+        <td>
+            <a (click)="onDetails(userCar.id)"> details </a>
+        </td>
+
+      </tr>
+
+    </tbody>
+  </table>
+
+<div class="row justify-content-center">
+  <div  *ngIf="table" class="col-sm-6 pagination justify-content-center pt-2 mt-5">
+    <pagination-controls (pageChange)="pageChanged($event)">
+    </pagination-controls>
+  </div>
+</div>
+
+<div *ngIf="!table">
+  <div class="row">
+
+    <div class="col-sm-6 imagecss">
+        <img *ngIf="!carDetails['carPicture']" [src]="imageUrl"
+        style="width:250px; height:250px"
+        class="img-thumbnail contain mb-4">
+
+        <img *ngIf="carDetails['carPicture']" src ="data:image/jpeg;base64,{{carDetails['carPicture']}}"
+           style="width:250px; height:250px"
+           class="img-thumbnail contain mb-4">
+    </div>
+
+    <div class="col-sm-6">
+    <ul class="list-group text-center">
+      <li class="list-group-item">{{carDetails['vehicle']['model']['brand']['name']}} {{carDetails['vehicle']['model']['modelType'] }} - {{carDetails['vehicle']['variant']['bodyType']}}</li>
+      <li class="list-group-item">Year: {{carDetails['year']}}</li>
+      <li class="list-group-item">Engine size: {{carDetails['engineSize']}}</li>
+      <li class="list-group-item">Licence plate: {{carDetails['licencePlate']}}</li>
+      <li class="list-group-item">Transmission: {{carDetails['transmission']['type']}}</li>
+      <li class="list-group-item">Type of fuel: {{carDetails['fuelTypes'][0]['fuel']}}</li>
+      <li class="list-group-item">Number of doors: {{carDetails['doors']}}</li>
+      <li class="list-group-item">Cars Location: {{carDetails['address']['street']}} {{carDetails['address']['number']}}, {{carDetails['address']['city']['name']}}</li>
+    </ul>
+  </div>
+
+  </div>
+    <div class="row justify-content-around mt-3 xs">
+
+        <div class="col-xs-4">
+            <button
+            class="btn btn-lg btn-outline-danger btn-block"
+            type="button"
+            (click)="onBack()"
+            >BACK
+          </button>
+           </div>
+
+
+         <div class="col-xs-4">
+            <button type="button" class="btn btn-lg btn-outline-danger btn-block"
+            (click)="onDelete(template)">REMOVE</button>
+
+            </div>
+          </div>
+
+           <ng-template #template>
+             <div class="modal-body text-center">
+               <p>Are you sure you want to delete this car?</p>
+               <button type="button" class="btn btn-outline-danger mr-5" (click)="confirm()" >Yes</button>
+               <button type="button" class="btn btn-outline-danger" (click)="decline()" >No</button>
+             </div>
+         </ng-template>
+
+
+
+</div>

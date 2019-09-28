@@ -1,0 +1,210 @@
+    <div class="card">
+        <div class="card-header mb-3" style="text-align:center ">
+          <h3 class="shadow">Type of car you want to rent?</h3>
+        </div>
+
+        <div class="card-body">
+        <form
+        (ngSubmit)="onNext(f)"
+        #f="ngForm">
+
+          <div class="row">
+            <div class="form-group col-sm-4">
+                <select
+                   name="brand"
+                   id="brand"
+                   (change)="getModels($event.target.value)"
+                    class="form-control"
+                    ngModel
+                    required
+                    #brand="ngModel">
+
+                    <option value="">Select Brand</option>
+                    <option *ngFor="let brand of brands" [value]="brand.id">
+                        {{brand.name}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <select
+                  name="model"
+                  ngModel
+                  required
+                  #model="ngModel"
+                   (change)="getVariants($event.target.value)"
+                    class="form-control">
+                    <option value="">Select Model</option>
+                    <option *ngFor="let model of models" [value]="model.id">
+                        {{model.modelType}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group col-sm-4">
+                <select
+                    name="variant"
+                    class="form-control"
+                    ngModel
+                    required
+                    #variant="ngModel"
+                    (change)="getVehicleID()">
+                    <option value="">Select Body variant</option>
+                    <option *ngFor="let variant of variants" [value]="variant.id">
+                        {{variant.bodyType}}
+                    </option>
+                </select>
+            </div>
+          </div>
+
+          <div class="row">
+
+              <div class="form-group col-sm-4">
+                  <select
+                  name="trans"
+                  class="form-control"
+                  ngModel
+                  #trans="ngModel"
+                  required>
+                      <option value="">Transmission type</option>
+                      <option *ngFor="let t of transmission" [value]="t.id">
+                          {{t.type}}
+                      </option>
+                  </select>
+              </div>
+
+              <div class="form-group col-sm-4">
+                  <select
+                  name="ftype"
+                  class="form-control"
+                  ngModel
+                  #ftype="ngModel"
+                  required>
+                      <option value="">Type of Fuel</option>
+                      <option *ngFor="let fuel of fuelType" [value]="fuel.id">
+                          {{fuel.fuel}}
+                      </option>
+                  </select>
+              </div>
+
+            <div class="form-group col-sm-4">
+              <input type="number"
+              id="doors"
+              name="doors"
+              class="form-control"
+              ngModel
+              placeholder="Number of doors"
+              #doors="ngModel">
+            </div>
+          </div>
+
+          <div class="row">
+              <div class="form-group col-sm-4">
+                  <input type="number"
+                  id="year"
+                  name="year"
+                  class="form-control"
+                  ngModel
+                  placeholder="Year"
+                  #year="ngModel">
+                </div>
+
+                <div class="form-group col-sm-4">
+                    <input type="number"
+                    id="engineSize"
+                    name="engineSize"
+                    class="form-control"
+                    ngModel
+                    placeholder="Engine size"
+                    #engineSize="ngModel">
+                  </div>
+
+                  <div class="form-group col-sm-4">
+                      <input type="text"
+                      id="licencePlate"
+                      name="licencePlate"
+                      class="form-control"
+                      ngModel
+                      placeholder="Licence plate number"
+                      #licencePlate="ngModel">
+                    </div>
+              </div>
+
+              <!-- <div class="row">
+                  <div class="form-group col-sm-4">
+                      <select name="airCondition"
+                          class="form-control">
+                          <option value="undefined">Air condition</option>
+                          <option>Yes</option>
+                          <option>No</option>
+                      </select>
+                  </div>
+              </div> -->
+
+              <!-- <form
+                  (ngSubmit)="addAdress(add)"
+                  #add="ngForm"> -->
+                <div class="row">
+
+                  <div class="form-group col-sm-4">
+                    <input type="text"
+                      id="street"
+                      class="form-control"
+                      name="street"
+                      ngModel
+                      placeholder="Enter your street"
+                      required
+                      #street="ngModel">
+                  </div>
+
+                  <div class="form-group col-sm-4">
+                      <input type="text"
+                        id="num"
+                        class="form-control"
+                        name="num"
+                        ngModel
+                        placeholder="Street number"
+                        required
+                        #num="ngModel">
+                    </div>
+
+                    <div class="form-group col-sm-4">
+                        <select
+                         name="city"
+                         class="form-control"
+                         ngModel
+                         #city="ngModel"
+                         required>
+                            <option value="">City</option>
+                            <option *ngFor="let city of cities" [value]="city.id">
+                                {{city.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+             <!-- </form> -->
+
+             <div class="row justify-content-around xs">
+               <div class="col-xs-4">
+                <button
+                class="btn btn-lg btn-outline-danger"
+                type="close"
+                (click)="onCancel()"
+                >Cancel
+              </button>
+               </div>
+
+               <div class="col-xs-4">
+                <button
+                class="btn btn-lg btn-outline-danger"
+                type="submit"
+                [disabled]="!f.valid">Next
+              </button>
+               </div>
+             </div>
+            </form>
+
+            </div>
+
+
+          </div>

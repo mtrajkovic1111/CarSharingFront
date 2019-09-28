@@ -1,0 +1,51 @@
+   <div class="container">
+     <div class="row">
+       <div class="col-sm-6 imagecss">
+         <img *ngIf="!user.profilePicture"[src]="imageUrl"
+         style="width:250px; height:250px"
+         class="img-fluid img-thumbnail contain mb-4">
+
+         <img *ngIf="user.profilePicture" src ="data:image/jpeg;base64,{{user.profilePicture}}"
+            style="width:250px; height:250px"
+            class="img-fluid  img-thumbnail contain mb-4">
+       </div>
+
+       <div class="col-sm-6">
+          <ul
+          *ngIf="user"
+          class="list-group list-group-flush mb-5 ">
+            <li class="list-group-item  mb-3 rounded"><span class="font-weight-bold">Name: </span> {{user.name}} {{user.surname}}</li>
+            <li class="list-group-item  mb-3 rounded"><span class="font-weight-bold">Date of birth: </span>{{user.dateOfBirth | date: 'dd/MM/yyyy' }}</li>
+            <li class="list-group-item  mb-3 rounded"><span class="font-weight-bold">Username: </span>{{user.username}}</li>
+            <li class="list-group-item  mb-3 rounded"><span class="font-weight-bold">Email: </span>{{user.email}}</li>
+            <li class="list-group-item  mb-1 rounded"><span class="font-weight-bold">Contact phone: </span>{{user.contactPhone}}</li>
+
+          </ul>
+        </div>
+
+     </div>
+   </div>
+
+
+
+
+    <div class="row justify-content-around xs">
+      <div class="col-xs-4">
+        <button type="button"
+        (click)="onChangeInfo()"
+        class="btn btn-lg btn-outline-danger">Update</button>
+      </div>
+
+    <div class="col-xs-4">
+        <button type="button"
+          (click)="onAddCar()"
+          class="btn btn-lg btn-outline-danger">Add Car</button>
+    </div>
+
+    <div class="col-xs-4">
+        <button type="button"
+         class="btn btn-lg btn-outline-danger"
+         (click)="onLogout()">Logout</button>
+    </div>
+  </div>
+

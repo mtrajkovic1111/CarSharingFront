@@ -1,0 +1,20 @@
+.card {
+  background-color: rgba(28, 22, 22, .7) ;
+  border-color: darkred;
+  margin-top: -170px;
+}
+
+.card-header  {
+  height:2px;
+}
+
+#toast-container > div {
+  opacity:1;
+}
+
+.small{
+  font-size: 11px;
+}
+.shadow {
+  text-shadow: 3px 3px 8px #FF0000;
+}

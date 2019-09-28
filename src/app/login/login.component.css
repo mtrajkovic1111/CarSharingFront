@@ -1,0 +1,13 @@
+.card {
+  background-color: rgba(28, 22, 22, .5) ;
+  border-color: darkred;
+
+}
+
+.card-header  {
+  height:2px;
+}
+
+.shadow {
+  text-shadow: 3px 3px 8px #FF0000;
+}

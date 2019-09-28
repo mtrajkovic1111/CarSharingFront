@@ -1,0 +1,12 @@
+.card {
+  background-color: rgba(28, 22, 22, .5) ;
+  border-color: darkred;
+  margin-top: -100px;
+
+
+}
+.card-header, .btn {
+  background-color: maroon;
+  color: whitesmoke;
+
+}

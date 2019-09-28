@@ -1,0 +1,130 @@
+<div class="row mb-3">
+  <div class="col-sm-6">
+
+      <img *ngIf="!user.profilePicture"[src]="imageUrl"
+        style="width:250px; height:250px"
+        class="img-thumbnail img-fluid contain imagecss mb-4">
+
+      <img *ngIf="user.profilePicture" src ="data:image/jpeg;base64,{{user.profilePicture}}"
+         style="width:250px; height:250px"
+         class="img-thumbnail img-fluid contain imagecss mb-4">
+
+          <div class="row justify-content-center">
+            <div class="col-sm-6 custom-file ">
+                <input type="file"
+                class="custom-file-input"
+                  name="uploadedFile" id="uploadedFile"
+                  (change)="onPicSelected($event)">
+                    <label class="custom-file-label" for="uploadedFile"></label>
+            </div>
+          </div>
+
+  </div>
+
+  <div class="col-sm-6">
+    <div class="card text-center card-form">
+
+    <div class="card-body">
+      <h5 class="mb-2">Change your info</h5>
+      <form
+          (ngSubmit)="onSubmit(f)"
+          #f="ngForm">
+
+  <div class="form-group mb-1">
+      <span>Name:</span>
+    <input type="text"
+        id="name"
+        class="d-inline form-control"
+        name="name"
+        [(ngModel)] = "user.name"
+        required
+        #name="ngModel">
+      </div>
+
+      <div class="form-group mb-1">
+        <span>Lastname:</span>
+    <input type="text"
+        id="lastname"
+        class="form-control "
+        name="lastname"
+        [(ngModel)] = "user.surname"
+        required
+        #lastname="ngModel">
+      </div>
+
+      <!-- | date: 'dd/MM/yyyy' -->
+
+      <div class="form-group mb-1">
+        <span>Date of birth:</span>
+        <input type="text"
+        bsDatepicker
+        [bsConfig] = "datePickerConfig"
+        value="{{ user.dateOfBirth| date }}"
+        name="bdate"
+        ngModel
+        class="form-control"
+        required
+        #bdate="ngModel" >
+      </div>
+
+
+
+      <div class="form-group mb-1">
+          <span>Email:</span>
+    <input type="email"
+        id="email"
+        name="email"
+        class="form-control"
+        [(ngModel)] = "user.email"
+        required
+        email
+        #email="ngModel">
+      </div>
+
+
+
+      <div class="form-group mb-1">
+          <span>Username:</span>
+      <input type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        [(ngModel)] = "user.username"
+        required
+        #username="ngModel">
+      </div>
+
+    <div class="form-group mb-1">
+        <span>Contact phone:</span>
+      <input type="text"
+        id="phone"
+        name="phone"
+        class="form-control"
+        [(ngModel)] = "user.contactPhone"
+        required
+        #phone="ngModel">
+      </div>
+
+    <p
+        *ngIf="!name.valid && name.touched ||
+               !lastname.valid && lastname.touched ||
+               !bdate.valid && bdate.touched ||
+               !email.valid && email.touched ||
+               !username.valid && username.touched"
+        class="help-block">All fields are required
+      </p>
+
+  </form>
+
+    </div>
+  </div>
+  </div>
+
+</div>
+
+<button
+class="btn btn-lg btn-outline-danger btn-block"
+type="submit"
+(click)="onSubmit()"
+>SUBMIT
+</button>

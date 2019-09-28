@@ -1,0 +1,44 @@
+
+.card {
+  background-color: rgba(28, 22, 22, .7) ;
+  margin-top: -40px;
+}
+
+@media (max-width: 575px) {
+  .card {
+    margin-top: -30px;
+  }
+  .form-control {
+    height: calc(1.8125rem + 2px);
+    padding: .2rem .3rem;
+    font-size: .775rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
+.custom-file {
+  width: 50%;
+  margin-top: -20px;
+  margin-bottom: 50px;
+
+}
+
+span {
+  display: none;
+}
+img {
+  width: 170px !important;
+  height: 170px !important;
+
+}
+.imagecss {
+  margin-top: -40px;
+}
+.btn {
+  font-size: 18px;
+  padding: 3px;
+}
+.card-body{
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+}
